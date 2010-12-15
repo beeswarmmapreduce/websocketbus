@@ -1,0 +1,21 @@
+<project name="websocketbus" default="compile">
+
+	<path id="compile.classpath">
+		<fileset dir="jetty-distribution-8.0.0.M2/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	
+	<property name="dest" location="bin"/>
+	<property name="src"  location="src"/>
+	
+	<target name="compile">
+		<javac srcdir="${src}"
+			destdir="${dest}"
+			classpathref="compile.classpath"
+			debug="on"
+			source="1.6"
+			target="1.6"/>
+	</target>
+	
+</project>
