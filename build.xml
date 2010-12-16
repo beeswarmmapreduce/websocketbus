@@ -10,6 +10,8 @@
 	<property name="src"  location="src"/>
 	
 	<target name="compile">
+		<mkdir dir="${dest}"/>
+		
 		<javac srcdir="${src}"
 			destdir="${dest}"
 			classpathref="compile.classpath"
