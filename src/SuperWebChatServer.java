@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 
-public class StartJetty 
+public class SuperWebChatServer 
 {
 
 	private static void setLogLevel(Level logLevel) 

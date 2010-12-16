@@ -5,5 +5,5 @@ for FILE in $(find jetty-*/lib/*.jar); do
 	CP=$CP":"$FILE
 done
 
-java -classpath $CP StartJetty
+java -classpath $CP SuperWebChatServer
 
