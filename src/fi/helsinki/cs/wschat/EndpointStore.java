@@ -5,13 +5,13 @@ import java.util.Set;
 
 public class EndpointStore
 {
-	private String serviceName;
+	private String requestPath;
 	
 	private Set<ChatEndpoint> clients;
 	
 	public EndpointStore(String serviceName)
 	{
-		this.serviceName = serviceName;
+		this.requestPath = serviceName;
 		this.clients = new HashSet<ChatEndpoint>();
 	}
 
@@ -19,7 +19,6 @@ public class EndpointStore
 	{
 		synchronized (clients) {
 			clients.add(chatEndpoint);
-			broadcast("A new ChatEndpoint has joined", chatEndpoint);
 		}
 	}
 
@@ -27,7 +26,6 @@ public class EndpointStore
 	{
 		synchronized (clients) {
 			clients.remove(chatEndpoint);
-			broadcast("Has left", chatEndpoint);
 		}
 		
 	}
@@ -36,9 +34,7 @@ public class EndpointStore
 	{
 		synchronized (clients) {
 			for (ChatEndpoint endpoint : clients) {
-				if (endpoint == sender) continue;
-				
-				endpoint.sendMessage(sender.getName(), msg);
+				endpoint.sendMessage(msg);
 			}
 		}
 	}

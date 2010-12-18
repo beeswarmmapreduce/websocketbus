@@ -20,12 +20,12 @@ public class SuperWebChatServlet extends WebSocketServlet
 		endpoints = new HashMap<String, EndpointStore>();
 	}
 	
-	private synchronized EndpointStore getEndpointStore(String service)
+	private synchronized EndpointStore getEndpointStore(String requestPath)
 	{
-		EndpointStore ret = endpoints.get(service);
+		EndpointStore ret = endpoints.get(requestPath);
 		if (ret == null) {
-			ret = new EndpointStore(service);
-			endpoints.put(service, ret);
+			ret = new EndpointStore(requestPath);
+			endpoints.put(requestPath, ret);
 		}
 		
 		return ret;
@@ -34,7 +34,15 @@ public class SuperWebChatServlet extends WebSocketServlet
 	@Override
 	protected WebSocket doWebSocketConnect(HttpServletRequest req, String service) 
 	{	
-		EndpointStore es = getEndpointStore(service);
+		// Turn "//"'s into "/"'s
+		StringBuffer path = new StringBuffer(req.getPathInfo());
+		
+		int i;
+		while ( (i=path.indexOf("//")) != -1) {
+			path.replace(i, i+2, "/");
+		}
+		
+		EndpointStore es = getEndpointStore(path.toString());
 		
 		return new ChatEndpoint(es);
 	}

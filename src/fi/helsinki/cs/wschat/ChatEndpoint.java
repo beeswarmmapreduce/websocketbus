@@ -14,10 +14,10 @@ public class ChatEndpoint implements WebSocket
 		store = es;
 	}
 
-	public void sendMessage(String from, String msg)
+	public void sendMessage(String msg)
 	{
 		try {
-			out.sendMessage(from+": "+msg);
+			out.sendMessage(msg);
 		} catch(IOException ie) {
 			out.disconnect();
 		}
