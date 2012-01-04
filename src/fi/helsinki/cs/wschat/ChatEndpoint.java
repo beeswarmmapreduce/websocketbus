@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.eclipse.jetty.websocket.WebSocket;
 
-public class ChatEndpoint implements WebSocket, WebSocket.OnTextMessage, WebSocket.OnBinaryMessage, WebSocket.OnFrame
+public class ChatEndpoint implements WebSocket, WebSocket.OnTextMessage
 {
 	private EndpointStore store;
 	private Connection out;
@@ -50,21 +50,5 @@ public class ChatEndpoint implements WebSocket, WebSocket.OnTextMessage, WebSock
 		return "Jack";
 	}
 
-	@Override
-	public boolean onFrame(byte arg0, byte arg1, byte[] arg2, int arg3, int arg4) 
-	{
-		throw new RuntimeException("onFragment() is not supported!");
-	}
-	
-	@Override
-	public void onMessage(byte[] arg0, int arg1, int arg2)
-	{
-		throw new RuntimeException("onMessage(byte[],int,int) is not supported!");
 
-	}
-
-	@Override
-	public void onHandshake(FrameConnection arg0) {
-		throw new RuntimeException("onHandsake() is not supported!");		
-	}
 }
