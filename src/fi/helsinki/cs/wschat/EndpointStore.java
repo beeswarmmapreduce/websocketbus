@@ -5,6 +5,7 @@ import java.util.Set;
 
 public class EndpointStore
 {
+	@SuppressWarnings("unused")
 	private String requestPath;
 	
 	private Set<ChatEndpoint> clients;

@@ -32,7 +32,7 @@ public class SuperWebChatServlet extends WebSocketServlet
 	}
 	
 	@Override
-	protected WebSocket doWebSocketConnect(HttpServletRequest req, String service) 
+	public WebSocket doWebSocketConnect(HttpServletRequest req, String service) 
 	{	
 		// Turn "//"'s into "/"'s
 		StringBuffer path = new StringBuffer(req.getPathInfo());
